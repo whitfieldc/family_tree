@@ -2,23 +2,20 @@ require_relative 'person'
 require_relative 'family'
 require_relative 'helpers'
 
-george_line = make_family("George", ["Patrick", "Robert"])
-george = george_line.ancestor
 
-james_line = make_family("James", ["Mary"])
-james = james_line.ancestor
+george = Person.new({name: "George", children: [make_person("Patrick"), make_person("Robert")]})
 
-kevin_line = make_family("Kevin", ["Samuel", george, james, "Aaron"])
-kevin = kevin_line.ancestor
+james = Person.new({name: "James", children: [make_person("Mary")]})
 
-jill_line = make_family("Jill", [kevin])
-jill = jill_line.ancestor
+kevin = Person.new({name: "Kevin", children: [make_person("Samuel"), george, james, make_person("Aaron")]})
 
-carl_line = make_family("Carl", ["Catherine", "Joseph"])
-carl = carl_line.ancestor
+jill = Person.new({name: "Jill", children: [kevin]})
 
-@fam = make_family("Nancy", ["Adam", jill, carl])
-nancy = @fam.ancestor
+carl = Person.new({name: "Carl", children: [make_person("Catherine"), make_person("Joseph")]})
+
+nancy = Person.new({name: "Nancy", children: [make_person("Adam"), jill, carl]})
+
+@fam = Family.new(nancy)
 
 
 
