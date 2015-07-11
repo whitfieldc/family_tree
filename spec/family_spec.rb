@@ -25,8 +25,15 @@ describe Family do
     expect(fam.ancestor).to be_a(Person)
   end
 
-  # describe '#find_only_children' do
-  #   let(:tina) {Person.new({name: "Tina", children: })}
-  # end
+  describe '#find_only_children' do
+    let(:tina) {Person.new({name: "Tina", children: [make_person("Adam")]})}
+    let(:john) {Person.new({name: "John", children: [tina, make_person("Amy")]})}
+    let(:fam_one) {Family.new(john)}
+
+    it 'prints people with no siblings' do
+      expect {fam_one.find_only_children}.to output("The following people have no siblings: John Adam \n").to_stdout
+    end
+
+  end
 
 end
