@@ -17,6 +17,11 @@ describe Person do
     expect(nancy.children).to be_empty
   end
 
+  it "can be initialized with children" do
+    luke = Person.new({name: "Luke", children: [nancy]})
+    expect(luke.children).to eq([nancy])
+  end
+
   it "has an add_child method" do
     expect(nancy).to respond_to(:add_child)
   end

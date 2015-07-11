@@ -25,7 +25,8 @@ describe Family do
     expect(fam.ancestor).to be_a(Person)
   end
 
-  describe '#find_only_children' do
-  end
+  # describe '#find_only_children' do
+  #   let(:tina) {Person.new({name: "Tina", children: })}
+  # end
 
 end
