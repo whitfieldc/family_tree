@@ -31,7 +31,7 @@ describe Family do
     let(:fam_one) {Family.new(john)}
 
     it 'prints people with no siblings' do
-      expect {fam_one.find_only_children}.to output("The following people have no siblings: John Adam \n").to_stdout
+      expect {fam_one.find_only_children}.to output("John\nAdam\n").to_stdout
     end
 
   end

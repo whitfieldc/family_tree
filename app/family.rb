@@ -16,11 +16,9 @@ class Family
     singletons.unshift(self.ancestor)
     #ancestor may or may not be an only child
     #but IS only known member of his/her generation
-    result = "The following people have no siblings: "
     singletons.each do |person|
-      result += (person.name + " ")
+      puts person.name
     end
-    puts result
   end
 
   def find_non_parents
