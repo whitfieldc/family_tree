@@ -1,40 +1,26 @@
 require_relative 'person'
 require_relative 'family'
+require_relative 'helpers'
 
-def make_person(name)
-  Person.new({name: name})
-end
+george_line = make_family("George", ["Patrick", "Robert"])
+george = george_line.ancestor
 
-def make_family(parent, kid_array)
-  parent = make_person(parent)
-  kid_array.each {|kid| parent.add_child(make_person(kid))}
+james_line = make_family("James", ["Mary"])
+james = james_line.ancestor
 
-end
+kevin_line = make_family("Kevin", ["Samuel", george, james, "Aaron"])
+kevin = kevin_line.ancestor
 
-george = make_person("George")
+jill_line = make_family("Jill", [kevin])
+jill = jill_line.ancestor
 
-["Patrick", "Robert"].each {|kid| george.add_child(make_person(kid))}
+carl_line = make_family("Carl", ["Catherine", "Joseph"])
+carl = carl_line.ancestor
 
-james = make_person("James")
+@fam = make_family("Nancy", ["Adam", jill, carl])
+nancy = @fam.ancestor
 
-james.add_child(make_person("Mary"))
 
-kev = make_person("Kevin")
-
-[make_person("Samuel"), george, james, make_person("Aaron")].each {|kid| kev.add_child(kid)}
-
-carl = make_person("Carl")
-
-["Catherine", "Joseph"].each {|kid| carl.add_child(make_person(kid))}
-
-jill = make_person("Jill")
-jill.add_child(kev)
-
-nancy = make_person("Nancy")
-first_gen = [make_person("Adam"), jill, carl]
-first_gen.each {|kid| nancy.add_child(kid)}
-
-@fam = Family.new(nancy)
 
 
 

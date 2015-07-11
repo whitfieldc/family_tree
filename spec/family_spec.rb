@@ -1,6 +1,7 @@
 require 'rspec'
 require_relative '../app/person'
 require_relative '../app/family'
+require_relative '../app/helpers'
 
 describe Family do
   let (:nancy) { Person.new({name: "Nancy"}) }
@@ -25,7 +26,6 @@ describe Family do
   end
 
   describe '#find_only_children' do
-
   end
 
 end
