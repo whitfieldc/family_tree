@@ -35,4 +35,10 @@ describe Person do
     expect(nancy.children).to eq([jill])
   end
 
+  it "can have grandchildren" do
+    nancy.add_child(jill)
+    jill.add_child(Person.new({name: "Tom"}))
+    expect(nancy.children[0].children).not_to be_nil
+  end
+
 end
