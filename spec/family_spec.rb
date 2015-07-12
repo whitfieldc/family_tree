@@ -5,6 +5,9 @@ require_relative '../app/helpers'
 
 describe Family do
   let (:nancy) { Person.new({name: "Nancy"}) }
+  let(:tina) {Person.new({name: "Tina", children: [make_person("Adam")]})}
+  let(:john) {Person.new({name: "John", children: [tina, make_person("Amy")]})}
+  let(:fam_one) {Family.new(john)}
 
   it 'can be initialized with a Person-class object' do
     expect{fam = Family.new(nancy)}.not_to raise_error
@@ -25,12 +28,17 @@ describe Family do
     expect(fam.ancestor).to be_a(Person)
   end
 
-  describe '#find_only_children' do
-    let(:tina) {Person.new({name: "Tina", children: [make_person("Adam")]})}
-    let(:john) {Person.new({name: "John", children: [tina, make_person("Amy")]})}
-    let(:fam_one) {Family.new(john)}
+  describe '#find_grandparent' do
 
-    it 'prints people with no siblings' do
+    it 'prints name of grandparent of input' do
+      expect {fam_one.find_grandparent("Adam")}.to output("John\n").to_stdout
+    end
+
+  end
+
+  describe '#find_only_children' do
+
+    it 'prints names of people with no siblings' do
       expect {fam_one.find_only_children}.to output("John\nAdam\n").to_stdout
     end
 
