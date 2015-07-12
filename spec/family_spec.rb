@@ -47,7 +47,7 @@ describe Family do
   describe '#find_non_parents' do
 
     it 'prints names of people with no children' do
-      expect {fam_one.find_non_parents}.to output("Amy\nAdam\n").to_stdout
+      expect {fam_one.find_non_parents}.to output("Adam\nAmy\n").to_stdout
     end
 
   end

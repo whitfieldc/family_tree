@@ -41,6 +41,10 @@ class Family
   end
 
   def find_non_parents
+    no_kids = find_non_parents_recursive(self.ancestor)
+    no_kids.each do |person|
+      puts person.name
+    end
   end
 
   def find_proudest_grandparent
@@ -60,7 +64,21 @@ class Family
       end
       children.push(next_gen.flatten)
     end
-    return children.flatten
+    children.flatten
+  end
+
+  def find_non_parents_recursive(root)
+    childless = []
+    num_of_kids = (root.children).length
+    if num_of_kids == 0
+      childless.push(root)
+    else
+      next_gen = (root.children).map do |child|
+        find_non_parents_recursive(child)
+      end
+      childless.push(next_gen.flatten)
+    end
+    childless.flatten
   end
 
 end
