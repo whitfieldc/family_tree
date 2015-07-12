@@ -8,7 +8,26 @@ class Family
     end
   end
 
-  def find_grandparent(grandchild_name)
+  def find_grandparent(grandchild_name, parent=nil, grandparent=nil)
+    if !parent
+      find_grandparent(grandchild_name, self.ancestor)
+    else
+      kids = parent.children
+      if kids.length == 0
+        kids
+      else
+        kid_name_array = kids.map{|child| child.name}
+        if grandparent && (kid_name_array.include?(grandchild_name))
+          puts grandparent.name
+          [grandparent]
+        else
+          next_gen = kids.map{|child|
+            find_grandparent(grandchild_name, child, parent)
+          }
+          next_gen.flatten
+        end
+      end
+    end
   end
 
   def find_only_children
