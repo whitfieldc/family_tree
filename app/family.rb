@@ -78,9 +78,11 @@ class Family
   def find_proudest_grandparent
     winner_array = fpg_recursive(self.ancestor)
     if winner_array
-      winner_array[1].each do |winner|
-        puts winner.name
-      end
+      # winner_array[1].each do |winner|
+      #   puts winner.name
+      # end
+      winner_array.shift
+      puts winner_array.flatten.map { |person| person.name  }
     end
   end
 
