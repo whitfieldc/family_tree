@@ -47,7 +47,41 @@ class Family
     end
   end
 
+  def fpg_recursive(root, score=nil, leader=[])
+    candidate = root
+    high_score = score || 1
+    kids = candidate.children
+    return if kids.length == 0
+    g_kids = 0
+    kids.each do |kid|
+      g_kids += (kid.children).length
+    end
+    return if g_kids == 0
+    if g_kids == high_score
+      leader.push(candidate)
+    elsif g_kids > high_score
+      high_score = g_kids
+      leader = [candidate]
+    end
+    score_and_leader = [high_score, leader]
+    next_gen = kids.map do |kid|
+      fpg_recursive(kid, high_score, leader)
+    end
+    next_gen.each do |sub_winner_array|
+      if sub_winner_array && (sub_winner_array[0] > high_score)
+        score_and_leader = sub_winner_array
+      end
+    end
+    return score_and_leader
+  end
+
   def find_proudest_grandparent
+    winner_array = fpg_recursive(self.ancestor)
+    if winner_array
+      winner_array[1].each do |winner|
+        puts winner.name
+      end
+    end
   end
 
   private
@@ -80,5 +114,24 @@ class Family
     end
     childless.flatten
   end
+
+  # def find_proudest_grandparent_recursive(root)
+  #   kids = root.children
+  #   return if kids.length == 0
+  #   total = 0
+  #   kids.each do |child|
+  #     total += (child.children).length
+  #   end
+  #   return if total == 0
+  #   if total > winning_grandkids
+  #     winning_grandkids = total
+  #     winner = [root]
+  #   elsif total == winning_grandkids
+  #     winner.push(root)
+  #   end
+  #   kids.each do |child|
+  #     find_proudest_grandparent_recursive(child)
+  #   end
+  # end
 
 end

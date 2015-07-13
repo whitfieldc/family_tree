@@ -58,7 +58,7 @@ describe Family do
       expect{fam_one.find_proudest_grandparent}.to output('John\n').to_stdout
     end
 
-    it 'prints both names in the case of a tie' do
+    pending 'prints both names in the case of a tie' do
       tina.children[0].add_child(make_person("Fred"))
       expect{fam_one.find_proudest_grandparent}.to output('John\nTina\n').to_stdout
     end

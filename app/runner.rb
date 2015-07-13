@@ -1,10 +1,14 @@
 require_relative "seed"
 
-puts "No siblings:"
-@fam.find_only_children
+# puts "No siblings:"
+# @fam.find_only_children
 
-puts "Grandparent of Robert:"
-@fam.find_grandparent("Robert")
+# puts "Grandparent of Robert:"
+# @fam.find_grandparent("Robert")
 
-puts "No children:"
-@fam.find_non_parents
+# puts "No children:"
+# @fam.find_non_parents
+
+winner = @fam.fpg_recursive(@fam.ancestor)
+
+puts winner[1].name
