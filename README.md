@@ -3,8 +3,8 @@
 ##To run locally
 From the command line:
   1. git clone https://github.com/whitfieldc/family_tree.git
-  2. bundle install
-  3. cd family_tree
+  2. cd family_tree
+  3. bundle install
 
 To run all methods:
   * ruby app/runner.rb
